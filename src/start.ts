@@ -16,16 +16,11 @@ async function main() {
     false,
     false,
   ];
-
   const initialValues: Value[] = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
 
   if (initialValues.length !== faultyArray.length)
     throw new Error("Lengths don't match");
-
-  if (
-    faultyArray.filter((faulty) => faulty === true).length >
-    initialValues.length / 2
-  )
+  if (faultyArray.filter((faulty) => faulty === true).length > initialValues.length / 2)
     throw new Error("Too many faulty nodes");
 
   await launchNetwork(
@@ -34,9 +29,7 @@ async function main() {
     initialValues,
     faultyArray
   );
-
   await delay(200);
-
   await startConsensus(initialValues.length);
 }
 
